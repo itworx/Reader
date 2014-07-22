@@ -802,7 +802,9 @@ NSString * const  ReaderActionSheetItemTitleUnbookmark = @"Unbookmark";
 #pragma mark Toolbar button actions
 
 -(void)pushDoneBarButtonItem:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if ([self.delegate respondsToSelector:@selector(dismissReaderViewController:)]) {
+        [self.delegate dismissReaderViewController:self];
+    }
 }
 
 -(void)pushActionBarButtonItem:(id)sender {
